@@ -86,7 +86,10 @@ export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
       zoom={14}
       style={{ height: "100%", width: "100%" }}
       zoomControl={false}
+
     >
+      <MapClickHandler onClear={() => onSelectCan(null)} />
+
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -108,4 +111,23 @@ export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
       {selectedCan && <MapFocus coords={selectedCan.coords} />}
     </MapContainer>
   );
+}
+
+
+function MapClickHandler({ onClear }) {
+  const map = useMap();
+
+  useEffect(() => {
+    const handleClick = () => {
+      onClear();
+    };
+
+    map.on('click', handleClick);
+
+    return () => {
+      map.off('click', handleClick);
+    };
+  }, [map, onClear]);
+
+  return null;
 }
