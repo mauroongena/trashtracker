@@ -12,6 +12,7 @@ import EmptyInfoCard from "./components/infocards/EmptyInfoCard";
 import MapDisplay from "./components/MapDisplay";
 import "./styles/app.css";
 
+
 import { supabase } from "./lib/supabase";
 
 function MainApp() {
@@ -32,6 +33,39 @@ function MainApp() {
     };
 
     fetchTodos();
+
+    // Setup realtime subscription
+    const channel = supabase
+      .channel('trashcans-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'trashcans'
+        },
+        (payload) => {
+          if (payload.eventType === 'INSERT') {
+            setTrashcans((current) => [...current, payload.new]);
+          } else if (payload.eventType === 'UPDATE') {
+            setTrashcans((current) =>
+              current.map((can) => 
+                can.id === payload.new.id ? payload.new : can
+              )
+            );
+          } else if (payload.eventType === 'DELETE') {
+            setTrashcans((current) =>
+              current.filter((can) => can.id !== payload.old.id)
+            );
+          }
+        }
+      )
+      .subscribe();
+
+    // Cleanup subscription on unmount
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const selectedCan = useMemo(() => {

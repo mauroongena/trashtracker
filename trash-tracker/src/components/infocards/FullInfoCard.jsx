@@ -1,6 +1,11 @@
 import { MapPin, Navigation, RotateCcw, X, QrCode } from "lucide-react";
+import { updateTrashcanStatus } from "../../data/trashcans/api.trashcan";
 
-export default function FullInfoCard({ onClose, can }) {
+export default function FullInfoCard({ onClose, can, onUpdate }) {
+  const handleMarkAsEmpty = async () => {
+    await updateTrashcanStatus(can.id, false);
+    if (onUpdate) await onUpdate();
+  };
   return (
     <div className="info-card">
       <button onClick={onClose} className="info-card-close-btn">
@@ -14,20 +19,23 @@ export default function FullInfoCard({ onClose, can }) {
           <h3>{can.name}</h3>
           <p className="address">{can.address}</p>
           <p className="status">
-            <span className='status-text-full'>
+            <span className="status-text-full">
               {can.is_full ? "Full" : "Empty"}
             </span>
             <span className="status-time">
               {" "}
-              - {can.lastUpdated ?? "nog niet gemeld"}
+              - {can.last_updated ?? "nog niet gemeld"}
             </span>
           </p>
         </div>
         <QrCode size={28} color="#333" />
       </div>
       <div className="info-card-btn-row">
-        <button className="info-card-btn-secondary info-card-btn-secondary--full">
-          <RotateCcw size={16} /> Meld als vol
+        <button
+          className="info-card-btn-secondary info-card-btn-secondary--full"
+          onClick={handleMarkAsEmpty}
+        >
+          <RotateCcw size={16} /> Meld als leeg
         </button>
         <button className="info-card-btn-primary">
           <Navigation size={16} /> Route

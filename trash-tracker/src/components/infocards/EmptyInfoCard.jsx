@@ -1,6 +1,11 @@
 import { MapPin, Navigation, RotateCcw, X, QrCode } from "lucide-react";
+import { updateTrashcanStatus } from "../../data/trashcans/api.trashcan";
 
-export default function EmptyInfoCard({ onClose, can }) {
+export default function EmptyInfoCard({ onClose, can, onUpdate }) {
+  const handleMarkAsFull = async () => {
+    await updateTrashcanStatus(can.id, true);
+    if (onUpdate) await onUpdate();
+  };
   return (
     <div className="info-card">
       <button onClick={onClose} className="info-card-close-btn">
@@ -19,14 +24,17 @@ export default function EmptyInfoCard({ onClose, can }) {
             </span>
             <span className="status-time">
               {" "}
-              - {can.lastUpdated ?? "nog niet gemeld"}
+              - {can.last_updated ?? "nog niet gemeld"}
             </span>
           </p>
         </div>
         <QrCode size={28} color="#333" />
       </div>
       <div className="info-card-btn-row">
-        <button className="info-card-btn-secondary--empty info-card-btn-secondary">
+        <button 
+          className="info-card-btn-secondary--empty info-card-btn-secondary"
+          onClick={handleMarkAsFull}
+        >
           <RotateCcw size={16} /> Meld als vol
         </button>
         <button className="info-card-btn-primary">
