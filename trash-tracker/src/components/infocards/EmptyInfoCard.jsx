@@ -1,4 +1,4 @@
-import { MapPin, Navigation, RotateCcw, X, QrCode } from "lucide-react";
+import { MapPin, Navigation, RotateCcw, X } from "lucide-react";
 import { updateTrashcanStatus } from "../../data/trashcans/api.trashcan";
 
 export default function EmptyInfoCard({ onClose, can, onUpdate }) {
@@ -13,7 +13,7 @@ export default function EmptyInfoCard({ onClose, can, onUpdate }) {
       </button>
       <div className="info-card-content">
         <div className="info-card-icon-box info-card-icon-box--empty">
-          <MapPin color="green" size={30} />
+          <MapPin color="var(--green)" size={30} />
         </div>
         <div className="info-card-details">
           <h3>{can.name}</h3>
@@ -28,7 +28,6 @@ export default function EmptyInfoCard({ onClose, can, onUpdate }) {
             </span>
           </p>
         </div>
-        <QrCode size={28} color="#333" />
       </div>
       <div className="info-card-btn-row">
         <button 

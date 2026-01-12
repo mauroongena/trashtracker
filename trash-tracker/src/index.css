@@ -1,5 +1,8 @@
 :root {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --red: #ff4c4c;
+  --green: #3fe045;
 }
 
 body, html, #root {

@@ -1,4 +1,4 @@
-import { MapPin, Navigation, RotateCcw, X, QrCode } from "lucide-react";
+import { MapPin, Navigation, RotateCcw, X } from "lucide-react";
 
 export default function InfoCard({ can, onClose }) {
   return (
@@ -20,7 +20,6 @@ export default function InfoCard({ can, onClose }) {
             <span className="status-time"> - {can.lastUpdated}</span>
           </p>
         </div>
-        <QrCode size={28} color="#333" />
       </div>
       <div className="info-card-btn-row">
         <button className="info-card-btn-secondary">

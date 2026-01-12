@@ -1,4 +1,4 @@
-import { MapPin, Navigation, RotateCcw, X, QrCode } from "lucide-react";
+import { MapPin, Navigation, RotateCcw, X } from "lucide-react";
 import { updateTrashcanStatus } from "../../data/trashcans/api.trashcan";
 
 export default function FullInfoCard({ onClose, can, onUpdate }) {
@@ -28,7 +28,6 @@ export default function FullInfoCard({ onClose, can, onUpdate }) {
             </span>
           </p>
         </div>
-        <QrCode size={28} color="#333" />
       </div>
       <div className="info-card-btn-row">
         <button

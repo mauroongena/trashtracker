@@ -14,6 +14,7 @@ import "./styles/app.css";
 
 
 import { supabase } from "./lib/supabase";
+import NearestEmptyTrashButton from "./components/NearestEmptyTrashButton";
 
 function MainApp() {
   const location = useLocation();

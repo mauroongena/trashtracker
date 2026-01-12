@@ -6,7 +6,7 @@
   background-color: white;
   border-radius: 24px;
   padding: 20px;
-  z-index: 1001;
+  z-index: 600;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -55,11 +55,11 @@
 }
 
 .info-card-details .status-text-full {
-  color: red;
+  color: var(--red);
 }
 
 .info-card-details .status-text-empty {
-  color: green;
+  color: var(--green);
 }
 
 .info-card-details .status-time {
@@ -84,7 +84,7 @@
 
 .info-card-btn-primary {
   flex: 1;
-  background-color: #4caf50;
+  background-color: var(--green);
   color: white;
   border: none;
   padding: 12px;
@@ -111,11 +111,11 @@
 }
 
 .info-card-btn-secondary--empty {
-    color: #da2525;
-    border: 2px solid #da2525;
+    color: var(--red);
+    border: 2px solid var(--red);
 }
 
 .info-card-btn-secondary--full {
-    color: #4caf50;
-    border: 2px solid #4caf50;
+    color: var(--green);
+    border: 2px solid var(--green);
 }
