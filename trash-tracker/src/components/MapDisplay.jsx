@@ -2,30 +2,23 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import fullTrashcanIcon from "../assets/trashcan-full.png";
+import emptyTrashcanIcon from "../assets/trashcan-empty.png";
 
-const createIcon = (color) =>
-  new L.DivIcon({
-    html: `
-    <div style="
-      background-color: ${color}; 
-      width: 28px; 
-      height: 28px; 
-      border-radius: 50%; 
-      border: 3px solid white; 
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    ">
-      <div style="width: 6px; height: 6px; background: white; border-radius: 50%;"></div>
-    </div>`,
-    className: "",
-    iconSize: [28, 28],
-    iconAnchor: [14, 28],
-  });
+// Create Leaflet Icon objects from the images
+const fullIcon = new L.Icon({
+  iconUrl: fullTrashcanIcon,
+  iconSize: [40, 40],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
 
-const greenIcon = createIcon("#4CAF50");
-const redIcon = createIcon("#F44336");
+const emptyIcon = new L.Icon({
+  iconUrl: emptyTrashcanIcon,
+  iconSize: [40, 40],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
 
 // Add a blue icon for user location
 const userIcon = new L.DivIcon({
@@ -98,7 +91,7 @@ export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
         <Marker
           key={can.id}
           position={[can.lat, can.long]} // ✅ lat first!
-          icon={can.is_full ? redIcon : greenIcon}
+          icon={can.is_full ? fullIcon : emptyIcon}
           eventHandlers={{
             click: () => onSelectCan(can),
           }}
