@@ -10,7 +10,14 @@ export default function InfoCard({ can, onClose }) {
           <h3 style={{ margin: 0, fontSize: '16px' }}>{can.name}</h3>
           <p style={{ margin: '2px 0', fontSize: '12px', color: '#999' }}>{can.address}</p>
           <p style={{ marginTop: '8px', fontSize: '13px' }}>
-            <span style={{ color: '#4CAF50', fontWeight: 'bold' }}>Empty</span> 
+            <span
+  style={{
+    color: can.is_full ? 'red' : 'green',
+    fontWeight: 'bold',
+  }}
+>
+  {can.is_full ? 'Full' : 'Empty'}
+</span>
             <span style={{ color: '#888' }}> - {can.lastUpdated}</span>
           </p>
         </div>

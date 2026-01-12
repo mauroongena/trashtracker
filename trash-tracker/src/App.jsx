@@ -1,19 +1,39 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { BrowserRouter as Router, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
-import { TRASHCANS } from './data/trashcans';
 import Header from './components/Header';
 import InfoCard from './components/InfoCard';
 import MapDisplay from './components/MapDisplay';
+
+import { supabase } from './lib/supabase'
 
 function MainApp() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [trashcans, setTrashcans] = useState([])
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const { data, error } = await supabase
+        .from('trashcans')
+        .select('*')
+
+      if (error) {
+        console.error(error)
+      } else {
+        setTrashcans(data)
+      }
+    }
+
+    fetchTodos()
+  }, [])
+
+  
   const selectedCan = useMemo(() => {
     const params = new URLSearchParams(location.search);
     const id = params.get('id');
-    return TRASHCANS.find(c => c.id === id) || null;
-  }, [location.search]);
+    return trashcans.find(c => c.id === id) || null;
+  }, [location.search, trashcans]);
 
   const handleSelectCan = (can) => {
     if (can) {
@@ -23,11 +43,16 @@ function MainApp() {
     }
   };
 
+
+  
+
   return (
     <div style={{ position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden' }}>
       <Header />
       
-      <MapDisplay 
+      <MapDisplay
+      play 
+        trashcans={trashcans}
         selectedCan={selectedCan} 
         onSelectCan={handleSelectCan} 
       />

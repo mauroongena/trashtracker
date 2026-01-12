@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { TRASHCANS } from '../data/trashcans';
 
 const createIcon = (color) => new L.DivIcon({
   html: `
@@ -39,8 +38,10 @@ function MapFocus({ coords }) {
   return null;
 }
 
-export default function MapDisplay({ selectedCan, onSelectCan }) {
+export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
   const GENT_CENTER = [51.0543, 3.7245];
+
+  //convert trashcan.long and trashcan.lat to [long, lat]
 
   return (
     <MapContainer 
@@ -54,11 +55,11 @@ export default function MapDisplay({ selectedCan, onSelectCan }) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {TRASHCANS.map((can) => (
+      {trashcans.map((can) => (
         <Marker
           key={can.id}
-          position={can.coords}
-          icon={can.status === 'empty' ? greenIcon : redIcon}
+          position={[can.lat, can.long]} // ✅ lat first!
+          icon={can.is_full ? redIcon : greenIcon}
           eventHandlers={{
             click: () => onSelectCan(can),
           }}
