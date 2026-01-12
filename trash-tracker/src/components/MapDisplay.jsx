@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React, { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 const createIcon = (color) =>
   new L.DivIcon({
@@ -71,7 +71,7 @@ export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
           setUserLocation([pos.coords.latitude, pos.coords.longitude]);
         },
         (err) => {
-          console.error(err)
+          console.error(err);
           setUserLocation(null);
         }
       );
@@ -86,7 +86,6 @@ export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
       zoom={14}
       style={{ height: "100%", width: "100%" }}
       zoomControl={false}
-
     >
       <MapClickHandler onClear={() => onSelectCan(null)} />
 
@@ -108,11 +107,10 @@ export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
 
       {userLocation && <Marker position={userLocation} icon={userIcon} />}
 
-      {selectedCan && <MapFocus coords={selectedCan.coords} />}
+      {selectedCan && <MapFocus coords={[selectedCan.lat, selectedCan.long]} />}
     </MapContainer>
   );
 }
-
 
 function MapClickHandler({ onClear }) {
   const map = useMap();
@@ -122,10 +120,10 @@ function MapClickHandler({ onClear }) {
       onClear();
     };
 
-    map.on('click', handleClick);
+    map.on("click", handleClick);
 
     return () => {
-      map.off('click', handleClick);
+      map.off("click", handleClick);
     };
   }, [map, onClear]);
 

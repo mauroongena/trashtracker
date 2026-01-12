@@ -7,7 +7,8 @@ import {
   Route,
 } from "react-router-dom";
 import Header from "./components/Header";
-import InfoCard from "./components/InfoCard";
+import FullInfoCard from "./components/infocards/FullInfoCard";
+import EmptyInfoCard from "./components/infocards/EmptyInfoCard";
 import MapDisplay from "./components/MapDisplay";
 import "./styles/app.css";
 
@@ -36,7 +37,7 @@ function MainApp() {
   const selectedCan = useMemo(() => {
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
-    return trashcans.find((c) => c.id === id) || null;
+    return trashcans.find((c) => String(c.id) === id) || null;
   }, [location.search, trashcans]);
 
   const handleSelectCan = (can) => {
@@ -64,9 +65,18 @@ function MainApp() {
         onSelectCan={handleSelectCan}
       />
 
-      {selectedCan && (
-        <InfoCard can={selectedCan} onClose={() => handleSelectCan(null)} />
-      )}
+      {selectedCan &&
+        (selectedCan.is_full ? (
+          <FullInfoCard
+            can={selectedCan}
+            onClose={() => handleSelectCan(null)}
+          />
+        ) : (
+          <EmptyInfoCard
+            can={selectedCan}
+            onClose={() => handleSelectCan(null)}
+          />
+        ))}
     </div>
   );
 }

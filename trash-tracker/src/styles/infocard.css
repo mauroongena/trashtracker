@@ -17,9 +17,16 @@
 }
 
 .info-card-icon-box {
-  background-color: #f0f9f0;
   padding: 12px;
   border-radius: 15px;
+}
+
+.info-card-icon-box--empty {
+ background-color: #f0f9f0;
+}
+
+.info-card-icon-box--full {
+ background-color: #f9f0f0;
 }
 
 .info-card-details {
@@ -47,11 +54,11 @@
   font-weight: bold;
 }
 
-.info-card-details .status-text.full {
+.info-card-details .status-text-full {
   color: red;
 }
 
-.info-card-details .status-text.empty {
+.info-card-details .status-text-empty {
   color: green;
 }
 
@@ -93,8 +100,6 @@
 .info-card-btn-secondary {
   flex: 1;
   background-color: white;
-  color: #4caf50;
-  border: 2px solid #4caf50;
   padding: 12px;
   border-radius: 12px;
   display: flex;
@@ -103,4 +108,14 @@
   gap: 5px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.info-card-btn-secondary--empty {
+    color: #da2525;
+    border: 2px solid #da2525;
+}
+
+.info-card-btn-secondary--full {
+    color: #4caf50;
+    border: 2px solid #4caf50;
 }
