@@ -1,0 +1,106 @@
+.info-card {
+  position: absolute;
+  bottom: 30px;
+  left: 15px;
+  right: 15px;
+  background-color: white;
+  border-radius: 24px;
+  padding: 20px;
+  z-index: 1001;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.info-card-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.info-card-icon-box {
+  background-color: #f0f9f0;
+  padding: 12px;
+  border-radius: 15px;
+}
+
+.info-card-details {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.info-card-details h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.info-card-details .address {
+  margin: 2px 0;
+  font-size: 12px;
+  color: #999;
+}
+
+.info-card-details .status {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.info-card-details .status-text {
+  font-weight: bold;
+}
+
+.info-card-details .status-text.full {
+  color: red;
+}
+
+.info-card-details .status-text.empty {
+  color: green;
+}
+
+.info-card-details .status-time {
+  color: #888;
+}
+
+.info-card-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.info-card-btn-row {
+  display: flex;
+  gap: 10px;
+}
+
+.info-card-btn-primary {
+  flex: 1;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.info-card-btn-secondary {
+  flex: 1;
+  background-color: white;
+  color: #4caf50;
+  border: 2px solid #4caf50;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}

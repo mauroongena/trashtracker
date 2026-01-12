@@ -1,8 +1,8 @@
 import { MapPin, Navigation, RotateCcw, X, QrCode } from "lucide-react";
 
-export default function InfoCard({ can, onClose }) {
+export default function EmptyInfoCard({ onClose, can }) {
   return (
-    <div className="info-card">
+    <article>
       <button onClick={onClose} className="info-card-close-btn">
         <X size={18} />
       </button>
@@ -30,6 +30,6 @@ export default function InfoCard({ can, onClose }) {
           <Navigation size={16} /> Route
         </button>
       </div>
-    </div>
+    </article>
   );
 }

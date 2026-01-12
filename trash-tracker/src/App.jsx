@@ -1,67 +1,71 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { BrowserRouter as Router, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import InfoCard from './components/InfoCard';
-import MapDisplay from './components/MapDisplay';
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  BrowserRouter as Router,
+  useLocation,
+  useNavigate,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Header from "./components/Header";
+import InfoCard from "./components/InfoCard";
+import MapDisplay from "./components/MapDisplay";
+import "./styles/app.css";
 
-import { supabase } from './lib/supabase'
+import { supabase } from "./lib/supabase";
 
 function MainApp() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [trashcans, setTrashcans] = useState([])
+  const [trashcans, setTrashcans] = useState([]);
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const { data, error } = await supabase
-        .from('trashcans')
-        .select('*')
+      const { data, error } = await supabase.from("trashcans").select("*");
 
       if (error) {
-        console.error(error)
+        console.error(error);
       } else {
-        setTrashcans(data)
+        setTrashcans(data);
       }
-    }
+    };
 
-    fetchTodos()
-  }, [])
+    fetchTodos();
+  }, []);
 
-  
   const selectedCan = useMemo(() => {
     const params = new URLSearchParams(location.search);
-    const id = params.get('id');
-    return trashcans.find(c => c.id === id) || null;
+    const id = params.get("id");
+    return trashcans.find((c) => c.id === id) || null;
   }, [location.search, trashcans]);
 
   const handleSelectCan = (can) => {
     if (can) {
       navigate(`/?id=${can.id}`);
     } else {
-      navigate('/');
+      navigate("/");
     }
   };
 
-
-  
-
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden' }}>
+    <div
+      style={{
+        position: "relative",
+        height: "100vh",
+        width: "100vw",
+        overflow: "hidden",
+      }}
+    >
       <Header />
-      
+
       <MapDisplay
-      play 
         trashcans={trashcans}
-        selectedCan={selectedCan} 
-        onSelectCan={handleSelectCan} 
+        selectedCan={selectedCan}
+        onSelectCan={handleSelectCan}
       />
 
       {selectedCan && (
-        <InfoCard 
-          can={selectedCan} 
-          onClose={() => handleSelectCan(null)} 
-        />
+        <InfoCard can={selectedCan} onClose={() => handleSelectCan(null)} />
       )}
     </div>
   );
