@@ -8,6 +8,12 @@
   padding: 20px;
   z-index: 600;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+
+  @media (width < 500px) {
+    bottom: 100px;
+    
+  }
 }
 
 .info-card-content {
@@ -84,7 +90,7 @@
 
 .info-card-btn-primary {
   flex: 1;
-  background-color: var(--green);
+  background-color: var(--blue);
   color: white;
   border: none;
   padding: 12px;
