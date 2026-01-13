@@ -20,7 +20,7 @@ export default function FullInfoCard({ onClose, can, onUpdate }) {
           <p className="address">{can.address}</p>
           <p className="status">
             <span className="status-text-full">
-              {can.is_full ? "Full" : "Empty"}
+              {can.is_full ? "Vol" : "Leeg"}
             </span>
             <span className="status-time">
               {" "}
@@ -36,7 +36,7 @@ export default function FullInfoCard({ onClose, can, onUpdate }) {
         >
           <RotateCcw size={16} /> Meld als leeg
         </button>
-        <button className="info-card-btn-primary">
+        <button className="info-card-btn-primary" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${can.lat},${can.long}`, "_blank")}>
           <Navigation size={16} /> Route
         </button>
       </div>
