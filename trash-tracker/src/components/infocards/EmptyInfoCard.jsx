@@ -20,11 +20,11 @@ export default function EmptyInfoCard({ onClose, can, onUpdate }) {
           <p className="address">{can.address}</p>
           <p className="status">
             <span className={`status-text-empty`}>
-              {can.is_full ? "Full" : "Empty"}
+              {can.is_full ? "Vol" : "Leeg"}
             </span>
             <span className="status-time">
               {" "}
-              - {can.last_updated ?? "nog niet gemeld"}
+              - {can.last_updated ?? "Nog niet gemeld"}
             </span>
           </p>
         </div>
@@ -36,7 +36,7 @@ export default function EmptyInfoCard({ onClose, can, onUpdate }) {
         >
           <RotateCcw size={16} /> Meld als vol
         </button>
-        <button className="info-card-btn-primary">
+        <button className="info-card-btn-primary" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${can.lat},${can.long}`, "_blank")}>
           <Navigation size={16} /> Route
         </button>
       </div>

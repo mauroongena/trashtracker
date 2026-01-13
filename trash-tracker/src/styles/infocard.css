@@ -8,6 +8,12 @@
   padding: 20px;
   z-index: 600;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+
+  @media (width < 500px) {
+    bottom: 100px;
+    
+  }
 }
 
 .info-card-content {
@@ -36,13 +42,13 @@
 
 .info-card-details h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .info-card-details .address {
   margin: 2px 0;
-  font-size: 12px;
-  color: #999;
+  font-size: 14px;
+  color: #7f7f7f;
 }
 
 .info-card-details .status {
@@ -84,7 +90,7 @@
 
 .info-card-btn-primary {
   flex: 1;
-  background-color: var(--green);
+  background-color: var(--blue);
   color: white;
   border: none;
   padding: 12px;

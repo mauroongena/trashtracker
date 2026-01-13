@@ -1,6 +1,6 @@
 import { MapPin, Navigation, RotateCcw, X } from "lucide-react";
 
-export default function InfoCard({ can, onClose }) {
+export default function InfoCard({ can, onClose }) {  
   return (
     <div className="info-card">
       <button onClick={onClose} className="info-card-close-btn">
@@ -15,7 +15,7 @@ export default function InfoCard({ can, onClose }) {
           <p className="address">{can.address}</p>
           <p className="status">
             <span className={`status-text ${can.is_full ? "full" : "empty"}`}>
-              {can.is_full ? "Full" : "Empty"}
+              {can.is_full ? "Vol" : "Leeg"}
             </span>
             <span className="status-time"> - {can.lastUpdated}</span>
           </p>
@@ -25,7 +25,7 @@ export default function InfoCard({ can, onClose }) {
         <button className="info-card-btn-secondary">
           <RotateCcw size={16} /> Meld als leeg
         </button>
-        <button className="info-card-btn-primary">
+        <button className="info-card-btn-primary" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${can.lat},${can.long}`, "_blank")}>
           <Navigation size={16} /> Route
         </button>
       </div>

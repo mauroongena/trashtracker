@@ -22,8 +22,9 @@
 
 .legend-container {
   position: absolute;
-  top: 80px;
-  left: 10px;
+  width: fit-content;
+  top: 70px;
+  left: 20px;
   right: 10px;
   z-index: 501;
   display: flex;

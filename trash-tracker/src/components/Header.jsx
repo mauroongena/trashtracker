@@ -3,12 +3,11 @@ export default function Header() {
     <>
       <div className="header">
         <h1>TrashTracker</h1>
-        <p>Click on a trashcan</p>
       </div>
       <div className="legend-container">
         <div className="legend-pill">
-          <div className="legend-dot green" /> Empty
-          <div className="legend-dot red" /> Full
+          <div className="legend-dot green" /> Leeg
+          <div className="legend-dot red" /> Vol
         </div>
       </div>
     </>
