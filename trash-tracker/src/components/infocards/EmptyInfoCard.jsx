@@ -24,7 +24,7 @@ export default function EmptyInfoCard({ onClose, can, onUpdate }) {
             </span>
             <span className="status-time">
               {" "}
-              - {can.last_updated ?? "nog niet gemeld"}
+              - {can.last_updated ?? "Nog niet gemeld"}
             </span>
           </p>
         </div>

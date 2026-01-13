@@ -31,7 +31,7 @@ export default function NearestEmptyTrashButton({ userLocation, trashcans, onSel
       <button
         onClick={handleClick}
         style={{
-          padding: "10px 14px",
+          padding: "12px 18px",
           borderRadius: "8px",
           border: "none",
           background: "#2196F3",

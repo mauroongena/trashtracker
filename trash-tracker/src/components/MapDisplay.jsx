@@ -65,7 +65,6 @@ export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
       <NearestEmptyTrashButton userLocation={userLocation} trashcans={trashcans} onSelectCan={onSelectCan} />
       
       {trashcans.map((can) => {
-        // Determine the correct icon
         let icon;
         if (selectedCan && selectedCan.id === can.id) {
           icon = can.is_full ? fullTrashcanSelectedIcon : emptyTrashcanSelectedIcon;
@@ -73,7 +72,6 @@ export default function MapDisplay({ selectedCan, onSelectCan, trashcans }) {
           icon = can.is_full ? fullIcon : emptyIcon;
         }
 
-        // Wrap it in a Leaflet Icon object if needed
         const markerIcon = icon instanceof L.Icon ? icon : new L.Icon({
           iconUrl: icon,
           iconSize: [40, 40],
