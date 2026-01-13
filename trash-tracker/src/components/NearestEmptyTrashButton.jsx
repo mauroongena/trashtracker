@@ -27,7 +27,7 @@ export default function NearestEmptyTrashButton({ userLocation, trashcans, onSel
   };
 
   return (
-    <div style={{ position: "absolute", top: 90, right: 20, zIndex: 1001 }}>
+    <div style={{ position: "absolute", top: 70, right: 20, zIndex: 1001 }}>
       <button
         onClick={handleClick}
         style={{
@@ -39,9 +39,10 @@ export default function NearestEmptyTrashButton({ userLocation, trashcans, onSel
           cursor: "pointer",
           zIndex: 1001,
           boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
+          fontSize: 14
         }}
       >
-        🗑️ Nearest empty bin
+        Zoek vuilbak
       </button>
     </div>
   );
